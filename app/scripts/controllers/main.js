@@ -39,8 +39,8 @@ angular.module('angularApp')
 
 
 	// Edicao de contato
-	$scope.mostrarContato = function(index){
-		$scope.editContato = $scope.contatos[index];
+	$scope.mostrarContato = function(nome){
+		$scope.editContato = $scope.contatos[$scope.contatos.map(function(e) { return e.nome; }).indexOf(nome)];
 	};
 
 	// Alterar numeros

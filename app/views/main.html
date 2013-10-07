@@ -10,8 +10,8 @@
 
 	<ul class="list-contatos">
 		<div class="row-fluid">
-			<li ng-repeat="contato in contatos" class=" span8">
-				<div ng-click="mostrarContato($index)" data-toggle="modal" data-target="#editar" class="span11">
+			<li ng-repeat="contato in contatos | filter:novoContato | orderBy:'nome'" class=" span8">
+				<div ng-click="mostrarContato(contato.nome)" data-toggle="modal" data-target="#editar" class="span11">
 					<div class="titulo span12">
 						{{ contato.nome }}
 					</div>
@@ -59,7 +59,7 @@
 					<h4>Emails</h4>
 					<form ng-submit="addEmail()">
 						<label class="form-inline">
-							<input type="text" ng-model="novoEmail" placeholder="45 9988 7766" class="span4">
+							<input type="text" ng-model="novoEmail" placeholder="nome@email.com" class="span4">
 							<button class="btn btn-primary" type="submit">
 								<i class="icon-plus icon-white"></i>
 							</button>
