@@ -22,7 +22,8 @@ Rules to contribute
 *	Always use tab;
 *	About the positioning and comments, see this:
 
-	`/*
+	```javascript
+	/*
 	*	--------------------------
 	*	MODULE 'NAME OF THE MODULE'
 	*
@@ -37,14 +38,16 @@ Rules to contribute
 	$scope.nameFunction = function(){
 		$scope.doAnything();
 		. . .
-	};`
+	};
+	```
 
 ### Rules of HTML
 
 *	Always use tab;
 *	About the positioning and comments, see this:
 	
-	`<!-- Form to add or search a contact in/of list -->
+	```html
+	<!-- Form to add or search a contact in/of list -->
 	<form ng-submit="addContact()">
 		<p class="controls form-inline">
 			<input type="text" class="span4" ng-model="newContact.name" placeholder="Name">
@@ -58,16 +61,19 @@ Rules to contribute
 	<ul class="list-contacts">
 		. . .
 	</ul>
-	<!-- End List -->`
+	<!-- End List -->
+	```
 
 ### Rules of HTML
 
 *	Always use tab;
 *	About the positioning and comments, see this:
 
-	`/*
+	```css
+	/*
 	*   Fixing the bug in modal
 	*/
 	.modal.fade{
 	    top: -50%;
-	}`
+	}
+	```
