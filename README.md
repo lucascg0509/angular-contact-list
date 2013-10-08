@@ -64,7 +64,7 @@ Rules to contribute
 	<!-- End List -->
 	```
 
-### Rules of HTML
+### Rules of CSS
 
 *	Always use tab;
 *	About the positioning and comments, see this:
