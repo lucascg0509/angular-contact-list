@@ -1,46 +1,64 @@
 <div class="span12">
-	<h1>Seus contatos</h1>
+	<h1>Yours contacts</h1>
 	
-	<form ng-submit="addContato()">
+	<!-- Form to add or search a contact in/of list -->
+	<form ng-submit="addContact()">
 		<p class="controls form-inline">
-			<input type="text" class="span4" ng-model="novoContato.nome" placeholder="Nome">
+			<input type="text" class="span4" ng-model="newContact.name" placeholder="Name">
 			<button class="btn btn-primary" type="submit"><i class="icon-plus icon-white"></i></button>
 		</p>
 	</form>
+	<!-- End Form -->
+	
 
-	<ul class="list-contatos">
+	<!-- List of contacts -->
+	<ul class="list-contacts">
 		<div class="row-fluid">
-			<li ng-repeat="contato in contatos | filter:novoContato | orderBy:'nome'" class=" span8">
-				<div ng-click="mostrarContato(contato.nome)" data-toggle="modal" data-target="#editar" class="span11">
+			<!-- In NEXT LINE: to filter by the content of input -> newContact AND to order the contacts -->
+			<li ng-repeat="contact in contacts | filter:newContact | orderBy:'name'" class=" span8">
+				<div ng-click="displayContact(contact.name)" data-toggle="modal" data-target="#editar" class="span11">
+
+					<!-- Contact name -->
 					<div class="titulo span12">
-						{{ contato.nome }}
+						{{ contact.name }}
 					</div>
-					<div class="numeros span6">
-						<small ng-repeat="numero in contato.numeros">{{ numero }}<br></small>
+
+					<!-- List of numbers -->
+					<div class="numbers span6">
+						<small ng-repeat="number in contact.numbers">{{ number }}<br></small>
 					</div>
+					<!-- End List -->
+
+
+					<!-- List of emails -->
 					<div class="emails span6">
-						<small ng-repeat="email in contato.emails">{{ email }}<br></small>
+						<small ng-repeat="email in contact.emails">{{ email }}<br></small>
 					</div>
+					<!-- End List -->
+
 				</div>
-				<button class="btn btn-danger span1" ng-click="deletarContato($index)"><i class="icon-white icon-trash"></i></button>
+				<button class="btn btn-danger span1" ng-click="deleteContact($index)"><i class="icon-white icon-trash"></i></button>
 			</li>
 		</div>
 	</ul>
+	<!-- End List -->
+	
 
+	<!-- -->
 	<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Editar contato</h4>
+					<h4 class="modal-title">Edit contact</h4>
 				</div>
 				<div class="modal-body">
-					<label>Nome: <input type="text" ng-model="editContato.nome" class="span4"></label>
+					<label>Name: <input type="text" ng-model="editContact.name" class="span4"></label>
 					<br>
-					<h4>Numeros</h4>
-					<form ng-submit="addNumero()">
+					<h4>Numbers</h4>
+					<form ng-submit="addNumber()">
 						<label class="form-inline">
-							<input type="text" ng-model="novoNumero" placeholder="45 9988 7766" class="span2">
+							<input type="text" ng-model="newNumber" placeholder="45 9988 7766" class="span2">
 							<button class="btn btn-primary" type="submit">
 								<i class="icon-plus icon-white"></i>
 							</button>
@@ -48,9 +66,9 @@
 					</form>
 
 					<ul>
-						<li ng-repeat="numero in editContato.numeros" class="form-inline">
-							<input type="text" ng-model="numero" class="span2">
-							<button class="btn" ng-click="deletarNumero($index)"><i class="icon-trash"></i></button>
+						<li ng-repeat="number in editContact.numbers" class="form-inline">
+							<input type="text" ng-model="number" class="span2">
+							<button class="btn" ng-click="deleteNumber($index)"><i class="icon-trash"></i></button>
 						</li>
 					</ul>
 
@@ -59,7 +77,7 @@
 					<h4>Emails</h4>
 					<form ng-submit="addEmail()">
 						<label class="form-inline">
-							<input type="text" ng-model="novoEmail" placeholder="nome@email.com" class="span4">
+							<input type="text" ng-model="newEmail" placeholder="name@email.com" class="span4">
 							<button class="btn btn-primary" type="submit">
 								<i class="icon-plus icon-white"></i>
 							</button>
@@ -67,14 +85,14 @@
 					</form>
 
 					<ul>
-						<li ng-repeat="email in editContato.emails" class="form-inline">
+						<li ng-repeat="email in editContact.emails" class="form-inline">
 							<input type="text" ng-model="email" class="span4">
-							<button class="btn" ng-click="deletarEmail($index)"><i class="icon-trash"></i></button>
+							<button class="btn" ng-click="deleteEmail($index)"><i class="icon-trash"></i></button>
 						</li>
 					</ul>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->

@@ -3,66 +3,109 @@
 angular.module('angularApp')
 .controller('MainCtrl', function ($scope) {
 
-	//localStorage.setItem('contatos', null);
 
-	var contatosInStore = JSON.parse(localStorage.getItem('contatos'));
-
-	$scope.contatos = contatosInStore || [];
 	/*
-	$scope.contatos = [{
-		nome: 'Heverson Damasceno',
-		numeros: ['45 9929 0088' , '45 3029 2425'],
-		emails: ['heverson@trafor.com.br']
-	},
-	{
-		nome: 'Lucas Cortez Gresele',
-		numeros: [],
-		emails: []
-	}];
+	*	Get the contacts in 'localStorage' and parse the string to JSON
 	*/
+	var contactsInStore = JSON.parse(localStorage.getItem('contacts'));
 
+
+	/*
+	*	VAR $scope.contacts receive contacts in 'localStorage' OR a empty array
+	*/
+	$scope.contacts = contactsInStore || [];
+
+
+	/*
+	*	FUNCTION
+	*
+	*	Watch for changing in contacts and save in 'localStorage'
+	*/
 	$scope.$watch(function(){
-		localStorage.setItem('contatos', JSON.stringify($scope.contatos));
+
+		/*
+		*	Save on 'localStorage.contacts' the JSON object parsed to a string
+		*/
+		localStorage.setItem('contacts', JSON.stringify($scope.contacts));
+
 	});
 
-	$scope.addContato = function(){
-		$scope.novoContato.numeros = [];
-		$scope.novoContato.emails = [];
-		$scope.contatos.unshift($scope.novoContato);
 
-		$scope.novoContato = '';
+	/*
+	*	--------------------------
+	*	MODULE CONTACTS LIST
+	*
+	*	List of contacts on index
+	*	
+	*/
+
+
+	/*
+	*	Function to add a contact in list
+	*/
+	$scope.addContact = function(){
+		$scope.newContact.numbers = [];
+		$scope.newContact.emails = [];
+		$scope.contacts.unshift($scope.newContact);
+
+		$scope.newContact = '';
 	};
 
-	$scope.deletarContato = function(index){
-		$scope.contatos.splice(index, 1);
+	/*
+	*	Function to delete a contact
+	*/
+	$scope.deleteContact = function(index){
+		$scope.contacts.splice(index, 1);
 	};
 
 
-	// Edicao de contato
-	$scope.mostrarContato = function(nome){
-		$scope.editContato = $scope.contatos[$scope.contatos.map(function(e) { return e.nome; }).indexOf(nome)];
+	/*
+	*	Function to get variables of the contact and put in the modal to edit
+	*/
+	$scope.displayContact = function(name){
+		$scope.editContact = $scope.contacts[$scope.contacts.map(function(e) { return e.name; }).indexOf(name)];
 	};
 
-	// Alterar numeros
-	$scope.addNumero = function(){
-		$scope.editContato.numeros.push($scope.novoNumero);
 
-		$scope.novoNumero = '';
+	/*
+	*	--------------------------
+	*	MODULE EDIT CONTACT
+	*
+	*	To edit the contact
+	*	
+	*/
+
+
+	/*
+	*	Function to add number in the numbers list
+	*/
+	$scope.addNumber = function(){
+		$scope.editContact.numbers.push($scope.newNumber);
+
+		$scope.newNumber = '';
 	};
 
-	$scope.deletarNumero = function(index){
-		$scope.editContato.numeros.splice(index, 1);
+	/*
+	*	Function to delete number in the numbers list
+	*/
+	$scope.deleteNumber = function(index){
+		$scope.editContact.numbers.splice(index, 1);
 	};
 
-	// Alterar emails
+	/*
+	*	Function to add email in the emails list
+	*/
 	$scope.addEmail = function(){
-		$scope.editContato.emails.push($scope.novoEmail);
+		$scope.editContact.emails.push($scope.newEmail);
 
-		$scope.novoEmail = '';
+		$scope.newEmail = '';
 	};
 
-	$scope.deletarEmail = function(index){
-		$scope.editContato.emails.splice(index, 1);
+	/*
+	*	Function to delete email in the emails list
+	*/
+	$scope.deleteEmail = function(index){
+		$scope.editContact.emails.splice(index, 1);
 	};
 
 
